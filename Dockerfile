@@ -1,18 +1,18 @@
-FROM alpine:3.10
-MAINTAINER Victor Trac <victor@cloudkite.io>
+FROM golang:1.18-alpine3.15
+MAINTAINER Chubak Bidpaa <chubakbidpaa@gmail.com>
 
 ENV VERSION="1.30.3116.68"
 
 # Build deps
-RUN apk --no-cache add --update go git bzr wget py2-pip \ 
+RUN apk --no-cache add --update git bzr wget py2-pip \ 
     gcc python python-dev make musl-dev linux-headers libffi-dev openssl-dev \
     py-setuptools openssl procps ca-certificates openvpn 
     
+
 RUN pip install --upgrade pip 
 
 # Pritunl Install
-RUN export GOPATH=/go \
-    && go get github.com/pritunl/pritunl-dns \
+RUN go get github.com/pritunl/pritunl-dns \
     && go get github.com/pritunl/pritunl-web \
     && cp /go/bin/* /usr/bin/ 
 
