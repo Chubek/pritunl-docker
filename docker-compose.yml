@@ -22,6 +22,11 @@ services:
       - "80:80"
       - "443:443"
       - "1194:1194/udp"
+      - "1194:1194/tcp"
+      - "2032:2032/udp"
+      - "2032:2032/tcp"
+      - "9731:9731/udp"
+      - "9731:9731/tcp"
     privileged: true
     restart: always
 
